@@ -1,0 +1,22 @@
+PODS:
+  - SwiftyJSON (5.0.0)
+
+DEPENDENCIES:
+  - SwiftyJSON (from `https://github.com/tattn/SwiftyJSON.git`, branch `hotfix-xcode12`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :branch: hotfix-xcode12
+    :git: https://github.com/tattn/SwiftyJSON.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 29ee46ee23593f08e33e0d4364aa4bb91e950847
+    :git: https://github.com/tattn/SwiftyJSON.git
+
+SPEC CHECKSUMS:
+  SwiftyJSON: f0574c07d8ca1644050db687067209e3033a89a0
+
+PODFILE CHECKSUM: e8abfb57d38e864b2f538f9ca15cde6638706808
+
+COCOAPODS: 1.11.2

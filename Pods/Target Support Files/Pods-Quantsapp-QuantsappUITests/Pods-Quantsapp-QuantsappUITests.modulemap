@@ -1,0 +1,6 @@
+framework module Pods_Quantsapp_QuantsappUITests {
+  umbrella header "Pods-Quantsapp-QuantsappUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
