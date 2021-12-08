@@ -19,7 +19,7 @@ class CategoriesCVC: UIViewController,UICollectionViewDelegate, UICollectionView
     @IBOutlet weak var viewSC: UIView!
     @IBOutlet weak var viewS: UIView!
     @IBOutlet weak var viewLU: UIView!
- 
+    @IBOutlet weak var categoryCollection: UICollectionView!
     
     var webRes : [model_categoryRootClass] = []
     var cellData:[getcatDataStruct] = []
@@ -44,7 +44,7 @@ class CategoriesCVC: UIViewController,UICollectionViewDelegate, UICollectionView
     
     var lbl : UILabel!
     
-    @IBOutlet weak var categoryCollection: UICollectionView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryCollection.delegate = self
@@ -114,7 +114,7 @@ class CategoriesCVC: UIViewController,UICollectionViewDelegate, UICollectionView
             prod.setValue(val[5], forKey: "color")
             prodArray.add(prod)
         }
-        var arr = prodArray as! [AnyObject]
+        let arr = prodArray as [AnyObject]
         for val in arr{
             let allresp = getcatDataStruct(symbol: val["symbol"] as! String, price: val["price"] as! String, open_intrest: val["open_intrest"] as! String, price_change_per: val["price_change_per"] as! String, open_intrest_per: val["open_intrest_per"] as! String, color: val["color"] as! String)
             mainResp.append(allresp)
@@ -255,5 +255,23 @@ extension Double {
     func roundToDecimal(_ fractionDigits: Int) -> Double {
         let multiplier = pow(10, Double(fractionDigits))
         return Darwin.round(self * multiplier) / multiplier
+    }
+}
+
+
+extension CategoriesCVC{
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
+    }
+
+
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//
+//           return CGSize(width: self.categoryCollection.bounds.width, height: self.categoryCollection.bounds.height)
+//       }
+//
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0.0
     }
 }

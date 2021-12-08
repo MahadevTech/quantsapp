@@ -20,46 +20,6 @@ class webServices {
     
     var delegate : webServicesDelegate? = nil
     var requestId : String = ""
-    func getRequest(reqStr : String,requestId: String,completion: @escaping (_ data: AnyObject?, _ error: String) -> ()){
-        
-        print("Request Url : \(reqStr)")
-        
-        let request = NSMutableURLRequest(url: URL(string: reqStr.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!)!)
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
-        request.httpMethod = "GET"
-        request.timeoutInterval = 25
-        let task = URLSession.shared.dataTask(with: request as URLRequest) {
-            (data, response, error) in DispatchQueue.main.async(execute: {
-                if error != nil {
-                    self.delegate?.errorResponse(err :cfg.no_internet,reqId: requestId)
-                }
-                else {
-                    let httpResponse = response as! HTTPURLResponse
-                    print("httpResponse -> \(httpResponse.statusCode)")
-                    switch httpResponse.statusCode {
-                    case 503:
-                        self.delegate?.errorResponse(err :cfg.err_no_503,reqId: requestId)
-                        break
-                    case 404:
-                        self.delegate?.errorResponse(err :cfg.err_no_404,reqId: requestId)
-                        break
-                    case 200:
-                        self.delegate?.responseData(data :data!,reqId: requestId)
-                        break
-                    case 0:
-                        self.delegate?.errorResponse(err :cfg.err_no_0,reqId: requestId)
-                        break
-                    default:
-                        self.delegate?.errorResponse(err :cfg.err_default,reqId: requestId)
-                        break
-                    }
-                }
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            })
-        }
-        task.resume()
-    }
-    
     func getRequest_new(_ reqUrl : String, completion: @escaping (_ data: Data, _ error: String)->()){
         
         
